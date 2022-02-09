@@ -1,0 +1,8 @@
+
+.icon-closed:before { content: '\e800'; } /* '' */
+.icon-fullscreen:before { content: '\e801'; } /* '' */
+.icon-send:before { content: '\e803'; } /* '' */
+.icon-menu:before { content: '\e805'; } /* '' */
+.icon-email:before { content: '\e806'; } /* '' */
+.icon-arrow-left:before { content: '\e807'; } /* '' */
+.icon-arrow-right:before { content: '\e808'; } /* '' */

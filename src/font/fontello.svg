@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2021 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="closed" unicode="&#xe800;" d="M214 676a50 50 0 0 0 35-14l265-265 264 265a50 50 0 0 0 71 0 50 50 0 0 0 15-36 50 50 0 0 0-15-35l-265-264 265-265a50 50 0 0 0-71-71l-264 265-265-265a50 50 0 0 0-71 0 50 50 0 0 0-14 36 50 50 0 0 0 14 35l265 265-265 264a50 50 0 0 0-14 35 50 50 0 0 0 14 36 50 50 0 0 0 36 14z" horiz-adv-x="1000" />
+
+<glyph glyph-name="fullscreen" unicode="&#xe801;" d="M100-78a50 50 0 0 0-50 50v153a50 50 0 0 0 50 50 50 50 0 0 0 50-50v-103h103a50 50 0 0 0 50-50 50 50 0 0 0-50-50z m253 177a100 100 0 0 0-100 100v300a100 100 0 0 0 100 100h300a100 100 0 0 0 100-100v-300a100 100 0 0 0-100-100z m0 100h300v300h-300z m503 373v103h-103a50 50 0 0 0-50 50 50 50 0 0 0 50 50h153a50 50 0 0 0 50-50v-153a50 50 0 0 0-50-50 50 50 0 0 0-50 50z" horiz-adv-x="1000" />
+
+<glyph glyph-name="send" unicode="&#xe803;" d="M926 382l-804 316a18 18 0 0 1-22-24l65-237a35 35 0 0 1 31-25l556-42c4 0 12-1 12-5s-8-6-12-6l-549-33a34 34 0 0 1-31-26l-60-258a18 18 0 0 1 23-23l791 329a18 18 0 0 1 0 34z" horiz-adv-x="1000" />
+
+<glyph glyph-name="menu" unicode="&#xe805;" d="M144 50a44 44 0 0 0-44 43 44 44 0 0 0 44 43h712a44 44 0 0 0 44-43 44 44 0 0 0-44-43z m0 257a44 44 0 0 0-44 43 44 44 0 0 0 45 43h528a44 44 0 0 0 45-43 44 44 0 0 0-45-43z m0 257a44 44 0 0 0-44 43 44 44 0 0 0 44 43h712a44 44 0 0 0 44-43 44 44 0 0 0-44-43z" horiz-adv-x="1000" />
+
+<glyph glyph-name="email" unicode="&#xe806;" d="M868 698h-720a90 90 0 0 1-89-90l-1-540a90 90 0 0 1 90-91h720a90 90 0 0 1 90 91v540a90 90 0 0 1-90 90z m0-180l-360-225-360 225v90l360-225 360 225z" horiz-adv-x="1000" />
+
+<glyph glyph-name="arrow-left" unicode="&#xe807;" d="M679-79a71 71 0 0 0-51 21l-357 358a71 71 0 0 0 0 101l357 357a71 71 0 0 0 101-101l-307-307 307-307a71 71 0 0 0-50-122z" horiz-adv-x="1000" />
+
+<glyph glyph-name="arrow-right" unicode="&#xe808;" d="M357-79a71 71 0 0 0-50 122l306 307-306 307a71 71 0 0 0 101 101l357-357a71 71 0 0 0 0-101l-357-358a71 71 0 0 0-51-21z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

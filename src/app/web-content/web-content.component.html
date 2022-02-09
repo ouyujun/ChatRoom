@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="chatBox">
+    <div class="chatBoxTitle">
+      <div nz-row nzJustify="start" class="modaltitle">
+        <div nz-col nzSpan="3" class="header-img">
+          <nz-avatar
+            nzSrc="{{ this.imageUrl }}{{ data?.headerUrl }}"
+            [nzIcon]="'user'"
+            [nzSize]="32"
+            class="animate__animated animate__rubberBand"
+          ></nz-avatar>
+        </div>
+        <div nz-col nzSpan="5" class="title">
+          <span style="font: normal normal normal 14px/17px AppleSystemUIFont;">我是{{ data?.name }}</span>
+        </div>
+        <div nz-col nzSpan="16" class="title" class="loginimg">
+          <div class="svg">
+            <img
+              src="../../assets/images/email.svg"
+              style="fill: #fff"
+              class="svgimg"
+            />
+          </div>
+          <div class="svg" *ngFor="let item of ThirdParty">
+            <a target="_blank" href="{{ item.url }}"
+              ><img src="{{ this.imageUrl }}{{ item.iconUrl }}"
+            /></a>
+          </div>
+          <div class="svgScreen">
+            <img
+              src="../../assets/images/fullscreen.svg"
+              style="fill: #fff"
+              class="svgimg"
+            />
+          </div>
+          <!-- <div class="svgScreen">
+            <img
+              src="../../assets/images/fullscreen.svg"
+              style="fill: #fff"
+              class="svgimg"
+            />
+          </div> -->
+        </div>
+        <!-- <div nz-col nzSpan="12" class="title" style="text-align: right;" (click)="handleClose()">
+      <i nz-icon nzType="close-square"  style="font-size: 28px;line-height: 48px;"></i>
+    </div> -->
+      </div>
+    </div>
+    <div class="chatBoxContent">
+      <app-login></app-login>
+    </div>
+  </div>
+</body>
+</html>

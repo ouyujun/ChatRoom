@@ -1,0 +1,389 @@
+<div class="loginMenu">
+  <div class="loginMenuContent">
+    <div class="loginMenuTitle flex1">請選擇登入方式</div>
+    <div class="loginMenuWay flex1">
+      <a
+        href="{{ item.url }}"
+        *ngFor="let item of ThirdParty"
+        nz-tooltip
+        [nzTooltipTitle]="item.name"
+      >
+        <img src="{{ this.imageUrl }}{{ item.iconUrl }}" />
+      </a>
+    </div>
+    <div class="hrLine" (click)="dologinSwitch()">
+      <span> <i class="demo-icon icon-arrow-left"></i>返回</span>
+    </div>
+  </div>
+</div>
+<div class="chatMessageBody" id="day" #scrollMe [scrollTop]="scrolltop" (scroll)="onElementScroll($event)">
+  <!--登入選單-->
+
+  <!--問答聊天-->
+  <div *ngIf="isAuth" class="moreChat" (click)="onImportHistory()">
+    {{ loadhistory }}
+  </div>
+  <div *ngFor="let fragment of historyList$ | async; let fragmentkey = index">
+    <div class="hrLine">
+      <span>{{ fragment.historyDate }}</span>
+    </div>
+    <div
+      class="chatForColumn"
+      *ngFor="let history of fragment.chatData; let historykey = index"
+    >
+      <!--ChatBot&User-撈取對話-->
+      <div *ngIf="history.chatRecordType == 'A'" style="margin: 5px auto">
+        <!--ChatBot-顯示區塊--><!--ChatBot-撈取資料模組-->
+        <div>
+          <!--ChatBot-選擇模組-->
+          <div *ngIf="history.kind == 'Text'">
+            <!--ChatBot-選擇模組-TEXT-->
+            <div
+              *ngFor="
+                let chat of history.chatContents;
+                let chatkey = index;
+                let lastRecotd = last
+              "
+            >
+              <!--ChatBot-選擇模組-TEXT(撈取資料)-->
+              <div class="chatForBot" *ngIf="chatkey == 0">
+                <!--ChatBot-選擇模組-TEXT(撈取資料-第一筆)-->
+                <div class="chatForBotBubbleFirst">
+                  <div
+                    class="lineHightSet"
+                    [innerHTML]="chat.text | nzSanitizer: 'html'"
+                  ></div>
+                  <div class="chatForBotTime">
+                    {{ history.createdTime | date: "hh:mm a" }}
+                  </div>
+                </div>
+              </div>
+              <div class="chatForBot" *ngIf="chatkey > 0">
+                <!--ChatBot-選擇模組-TEXT(撈取資料-次筆)-->
+                <div class="chatForBotBubbleSecond">
+                  <div
+                    class="lineHightSet"
+                    [innerHTML]="chat.text | nzSanitizer: 'html'"
+                  ></div>
+                  <div class="chatForBotTime">
+                    {{ history.createdTime | date: "hh:mm a" }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chatForBotavatar">
+            <nz-avatar
+              class="animate__animated animate__rubberBand"
+              nzIcon="user"
+              nzSrc="{{ this?.imageUrl }}{{ botInfo?.headerUrl }}"
+            ></nz-avatar>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="history.chatRecordType == 'Q'">
+        <!--訪客對話框-->
+        <div class="chatForUser">
+          <div
+            class="chatForUserBubble"
+            *ngFor="let chat of history.chatContents; let key = index"
+          >
+            <div
+              class="lineHightSet"
+              [innerHTML]="chat.text | nzSanitizer: 'html'"
+            ></div>
+            <div class="chatForUserTime">
+              {{ history.createdTime | date: "hh:mm a" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isAuth" class="hrLine"><span>今天</span></div>
+  <!--********************************************************************************-->
+  <div *ngFor="let history of messageList$ | async; let historykey = index">
+    <!--ChatBot&User-撈取對話-->
+    <div *ngIf="history.type" style="margin: 5px auto">
+      <!--ChatBot-顯示區塊-->
+      <div class="chatForColumn">
+        <!--ChatBot-撈取資料模組-->
+        <div *ngFor="let botchat of history.content; let botchatkey = index">
+          <!--ChatBot-選擇模組-->
+          <div *ngIf="botchat.kind == 'Text'">
+            <!--ChatBot-選擇模組-TEXT-->
+            <div *ngFor="let chat of botchat.chatContents; let chatkey = index">
+              <!--ChatBot-選擇模組-TEXT(撈取資料)-->
+              <div class="chatForBot" *ngIf="chatkey == 0">
+                <!--ChatBot-選擇模組-TEXT(撈取資料-第一筆)-->
+                <div class="chatForBotBubbleFirst">
+                  <div
+                    class="lineHightSet"
+                    [innerHTML]="chat.text | nzSanitizer: 'html'"
+                  ></div>
+                  <div class="chatForBotTime">{{ nowTime }}</div>
+                </div>
+              </div>
+              <div class="chatForBot" *ngIf="chatkey > 0">
+                <!--ChatBot-選擇模組-TEXT(撈取資料-次筆)-->
+                <div class="chatForBotBubbleSecond">
+                  <div
+                    class="lineHightSet"
+                    [innerHTML]="chat.text | nzSanitizer: 'html'"
+                  ></div>
+                  <div class="chatForBotTime">{{ nowTime }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--ChatBot-選擇模組-Picture-->
+          <div *ngIf="botchat.kind == 'Picture'">
+            <div class="chatForBot">
+              <!--ChatBot-選擇模組-Picture(撈取資料)輪播圖-->
+              <!--[slidesPerView:顯示幾筆資料]、[spaceBetween:間距]、
+          [slidesPerGroup:滑動組數]、[loopFillGroupWithBlank:忘記了]、
+          [navigation：左右滑動按鈕]、欲設定寬度直接用Width(px)
+          -->
+              <swiper
+                [slidesPerView]="1"
+                [spaceBetween]="18"
+                [slidesPerGroup]="1"
+                [width]="192"
+                [loopFillGroupWithBlank]="true"
+                [centeredSlidesBounds]="true"
+                [navigation]="true"
+                class="mySwiper"
+              >
+                <ng-template
+                  swiperSlide
+                  *ngFor="let chat of botchat.chatContents"
+                >
+                  <div class="chatForBotPicture" *ngIf="chat.pictureMemo">
+                    <img
+                      class="img"
+                      (click)="onPicture(chat)"
+                      src="{{ imageUrl }}{{ chat.pictureUrl }}"
+                    />
+                    <div class="text" *ngIf="chat.pictureMemo">
+                      <p>{{ chat.pictureMemo }}</p>
+                    </div>
+                  </div>
+                  <div *ngIf="!chat.pictureMemo" class="PictureMemoNone">
+                    <img
+                      class="img"
+                      (click)="onPicture(chat)"
+                      src="{{ imageUrl }}{{ chat.pictureUrl }}"
+                    />
+                  </div>
+                </ng-template>
+              </swiper>
+            </div>
+          </div>
+          <!--ChatBot-選擇模組-Question-->
+          <div *ngIf="botchat.kind == 'Question'">
+            <!--ChatBot-選擇模組-Question(撈取資料)主動提問按鈕存位置-->
+            <div *ngFor="let chat of botchat.chatContents; let chatkey = index">
+              <div id="chatForBot" class="chatForBot chatForBotSort">
+                <!--ChatBot-選擇模組-Question(撈取資料-第一筆)-->
+                <div class="chatForQuBot">
+                  <div class="chatForBotBubbleFirst">
+                    <div
+                      class="lineHightSet"
+                      [innerHTML]="chat.text | nzSanitizer: 'html'"
+                    ></div>
+                    <div class="chatForBotTime">{{ nowTime }}</div>
+                  </div>
+                </div>
+                <div
+                  class="chatForBotQuBtn"
+                  *ngIf="chat.replies"
+                  id="{{ chat.text }}"
+                >
+                  <button
+                    class="Btn"
+                    id="theButton"
+                    [disabled]="isNotify"
+                    *ngFor="let btn of chat.replies; let btnkey = index"
+                    (click)="runKindBtn(btn, botchat)"
+                  >
+                    {{ btn.replyName }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--ChatBot-選擇模組-Button-->
+          <div *ngIf="botchat.kind == 'Button'" class="chatForBtn">
+            <!--ChatBot-選擇模組-Question(撈取資料)主動提問按鈕存位置-->
+            <div
+              *ngFor="
+                let chat of botchat.chatContents;
+                let chatkey = index;
+                let lastRecotd = last
+              "
+            >
+              <div class="chatForBot" *ngIf="!lastRecotd">
+                <div class="chatForBotBtnFirst">
+                  <button
+                    id="theButton"
+                    [disabled]="isNotify"
+                    (click)="runKindBtn(chat, botchat)"
+                  >
+                    {{ chat.text }}
+                  </button>
+                </div>
+              </div>
+              <div class="chatForBot" *ngIf="lastRecotd">
+                <div class="chatForBotBtnSecond">
+                  <button
+                    id="theButton"
+                    [disabled]="isNotify"
+                    (click)="runKindBtn(chat, botchat)"
+                  >
+                    {{ chat.text }}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="chatForTime">{{ nowTime }}</div>
+          </div>
+        </div>
+        <div class="chatForBotavatar">
+          <nz-avatar
+            class="animate__animated animate__rubberBand"
+            nzIcon="user"
+            nzSrc="{{ this?.imageUrl }}{{ botInfo?.headerUrl }}"
+          ></nz-avatar>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!history.type">
+      <div class="chatForColumn" *ngFor="let botchat of history.content">
+        <!--訪客對話框-->
+        <div class="chatForUser">
+          <div
+            class="chatForUserBubble"
+            *ngFor="let chat of botchat.chatContents; let key = index"
+          >
+            <div class="lineHightSet">{{chat.text}}</div>
+            <div class="chatForUserTime">{{ nowTime }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------------------------------------------------>
+  <div class="long-div-inner">
+    <!--Loading-->
+    <nz-spin
+      [nzSpinning]="isSpinning"
+      [nzSimple]="isSpinning"
+      [nzIndicator]="indicatorTemplate"
+    >
+    </nz-spin>
+    <ng-template #indicatorTemplate>
+      <div class="chatForColumn SpinningStyle">
+        <!--訪客對話框-->
+        <div class="chatForBot">
+          <div class="user2Loading animate__animated animate__pulse">
+            <div span Class="loading">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <div class="chatForBotavatar">
+          <nz-avatar
+            class="animate__animated animate__rubberBand"
+            nzIcon="user"
+            nzSrc="{{ this?.imageUrl }}{{ botInfo?.headerUrl }}"
+          ></nz-avatar>
+        </div>
+      </div>
+    </ng-template>
+    <div class="faqsStyle" *ngIf="faqBtnList">
+      <swiper
+        [slidesPerView]="'auto'"
+        [spaceBetween]="3"
+        [slidesPerGroup]="1"
+        [loopFillGroupWithBlank]="true"
+        [centeredSlidesBounds]="true"
+        class="mySwiper"
+      >
+        <ng-template swiperSlide *ngFor="let btns of faqBtnList; let i = index">
+          <button
+            class="FaqBtn"
+            [ngStyle]="faqBtnstyle"
+            (click)="onFaqBtn(btns)"
+          >
+            <span *ngIf="botInfo.colorUrl">{{ btns?.buttonName }}</span>
+          </button>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+
+  <!--底部功列-->
+</div>
+<app-sixpalaces class="sixpalaces"></app-sixpalaces>
+<div nz-row class="chatSendFooter">
+  <div nz-col nzSpan="2">
+    <button
+      nz-button
+      class="menu"
+      style="border: none"
+      (click)="doMenuSwitch()"
+      nzGhost
+    >
+      <i class="demo-icon icon-menu iconSet"></i>
+    </button>
+  </div>
+  <!-- <input > -->
+  <div nz-col nzSpan="22">
+    <nz-input-group
+      [nzSuffix]="suffixIconSearch"
+      class="text"
+      id="input"
+      [nzSize]="'small'"
+      style="border: none; box-shadow: none"
+    >
+      <input
+        type="text"
+        nz-input
+        placeholder="你想詢問甚麼呢?"
+        maxlength="200"
+        autofocus
+        #myText
+       (ngModelChange)="clearTimer()"
+        [disabled]="isNotify"
+        [(ngModel)]="keyword"
+      />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <!--排隊人數-->
+      <button class="waitNum" (click)="onWaitNumber()" *ngIf="isTotalWait">
+        {{ isTotalWait }}
+      </button>
+      <button
+        *ngIf="isVipCs"
+        nz-button
+        nzGhost
+        class="cs"
+        [disabled]="isNotify"
+        (click)="onClickCsVIP()"
+      >
+        <img src="../../assets/images/cs.jpg" width="23px" />
+      </button>
+      <button
+        nz-button
+        nzGhost
+        class="send"
+        [disabled]="isNotify"
+        (click)="doSend()"
+      >
+        <i class="demo-icon icon-send" style="font-size: 23px; margin: 0px"></i>
+      </button>
+    </ng-template>
+  </div>
+</div>

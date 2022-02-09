@@ -1,0 +1,86 @@
+// body {
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   margin: 0px;
+//   .wrap {
+//     &btn {
+//       width: 100%;
+//       height: 90%;
+//     }
+//   }
+// }
+
+// html {
+//   font-size: 62.5%;
+//   height: 100%;
+// }
+
+// body {
+//   font-size: 1.6rem;
+//   margin: 0;
+//   height: 100%;
+// }
+
+// .wrap {
+//   position: relative;
+//   height: 100%;
+// }
+
+// .btn {
+//   width: 40px;
+//   height: auto;
+//   border: none;
+//   background: none;
+//   padding: 0px;
+// }
+
+// .btn:hover {
+//   cursor: pointer;
+//   animation: rubberBand;
+//   /* referring directly to the animation's @keyframe declaration */
+//   animation-duration: 2s;
+//   /* don't forget to set a duration! */
+// }
+
+// .chatbot {
+//   display: grid;
+//   grid-template-rows: 40px 1fr 30px;
+//   grid-template-areas:
+//     "chat-header"
+//     "chat-content"
+//     "chat-footer";
+//   height: 100%;
+// }
+
+// .header {
+//   grid-area: chat-header;
+//   color: white;
+//   font-size: 1.8rem;
+//   background-color: blue;
+//   display: flex;
+//   flex-direction: row;
+// }
+
+// .content {
+//   grid-area: chat-content;
+//   background-color: #f2f2f2;
+//   height: 100%;
+// }
+
+// .footer {
+//   grid-area: chat-footer;
+//   font-size: 1.4rem;
+//   color: black;
+//   background-color: cadetblue;
+// }
+
+// [aria-hidden="true"] {
+//   display: none;
+// }
+
+// .open {
+//   position: absolute;
+//   bottom: 0;
+//   right: 0;
+// }

@@ -1,0 +1,7 @@
+{
+  "apiUrl": "http://192.168.230.203:5567/",
+  "imgUrl": "http://192.168.230.203/photo/",
+  "iframeUrl": "http://localhost:1337/#/layout",
+  "isConsoleLog":false
+  
+}

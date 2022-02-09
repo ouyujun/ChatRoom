@@ -1,0 +1,37 @@
+.memberlogin {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1999;
+    .form {
+      position: relative;
+      top: 40%;
+      left: 50%;
+      width: 15%;
+      transform: translateY(-40%);
+      transform: translateX(-50%);
+    }
+  }
+  
+.login-form {
+    width: 80%;
+  }
+  
+  .login-form-margin {
+    margin-bottom: 16px;
+  }
+  
+  .login-form-forgot {
+    float: right;
+  }
+  
+  .login-form-button {
+    width: 100%;
+    background-color: cornflowerblue;
+  }
+  .ant-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-bottom: 5px;
+  }

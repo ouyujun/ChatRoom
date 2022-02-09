@@ -1,0 +1,802 @@
+.font-set {
+  font-weight: 400;
+  font-family: "Noto Sans TC", sans-serif;
+  font-family: "Rubik", sans-serif;
+}
+.moreChat {
+  width: 80%;
+  height: auto;
+  margin:5px auto;
+  text-align: center;
+  background-color:#bbbbbb23;
+  color: var(--blue);
+  padding: 4px 0px;
+  border-radius: 23px;
+  display: var(--loadrecord);
+  &:hover {
+    cursor: pointer;
+    @extend .font-set;
+    background-color: #bbbbbb27;
+    color: var(--Gradient);
+  }
+}
+.chatMessageBody {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  // top: 9%;
+  left: 0px;
+  // padding: 10px 5px 2px;
+  height: 82vh;
+  width: 100%;
+  max-height: 601px;
+  @media only screen and (max-height: 649px) and (min-height: 450px) {
+    height: 83.5vh;
+  }
+  @media only screen and (max-height: 749px) and (min-height: 650px) {
+    height: 85.5vh;
+  }
+  @media only screen and (max-height: 800px) and (min-height: 750px) {
+    height: 81.5vh;
+  }
+
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @extend .font-set;
+  line-height: 1.5em;
+}
+
+.ant-card {
+  padding: auto 10px;
+  text-align: center;
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  [nz-button] {
+    margin-right: 12px;
+  }
+}
+.chatForColumn {
+  //顯示區塊
+  -moz-box-sizing: border-box;
+  justify-content: space-around;
+  align-items: flex-end;
+  box-sizing: border-box;
+  position: relative;
+  // border: 1px solid red;
+  min-height: 10%;
+  height: auto;
+  padding: 5px 10px;
+  .chatForBotavatar {
+    position: absolute;
+    bottom: .4rem;
+  }
+  .chatForQuBot {
+    display: inline-flex;
+    justify-content: flex-start;
+    position: relative;
+    min-height: 30px;
+    width: 100%;
+    height: auto;
+    &Sort {
+      flex-direction: column;
+      width: auto;
+    }
+  }
+  .chatForBot {
+    display: inline-flex;
+    justify-content: flex-start;
+    position: relative;
+    left: 10%;
+    width: 100%;
+    height: auto;
+    min-height: 30px;
+    &Sort {
+      width: auto;
+      flex-direction: column;
+    }
+    &BubbleFirst {
+      //文字框第一筆
+      -moz-box-sizing: border-box;
+      -webkit-text-size-adjust: auto;
+      box-sizing: border-box;
+      position: relative;
+      margin-bottom: 2px;
+      padding: 12px;
+      width: auto;
+      height: auto;
+      max-width: 245px;
+      // text-size-adjust: 100%;
+      text-align: justify;
+      text-justify: inter-word;
+      background-color: #fff;
+      border-radius: 12px 12px 12px 4px;
+      @extend .font-set;
+      line-height: 14px;
+      font-size: var(--fontSize);
+      color: var(--unnamed-color-666666);
+      &:hover .chatForBotTime {
+        display: block;
+      }
+    }
+    &BubbleSecond {
+      //文字框次筆
+      -webkit-text-size-adjust: auto;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      position: relative;
+      margin-bottom: 2px;
+      padding: 12px;
+      width: auto;
+      height: auto;
+      max-width: 245px;
+      min-height: 18px;
+      // text-size-adjust: 100%;
+      text-align: justify;
+      text-justify: inter-word;
+      background-color: #fff;
+      border-radius: 4px 12px 12px 12px;
+      @extend .font-set;
+      line-height: 14px;
+      font-size: var(--fontSize);
+      color: var(--unnamed-color-666666);
+      &:hover .chatForBotTime {
+        display: block;
+      }
+    }
+    .PictureMemoNone {
+      height: auto;
+      background-color: #fff;
+      border-radius: 12px 12px 12px 4px;
+      .img {
+        width: 192px;
+        height: 144px;
+        border-radius: 12px 12px 4px 4px;
+      }
+    }
+    &Picture {
+      height: auto;
+      max-width: 192px;
+      background-color: #fff;
+      border-radius: 12px 12px 4px 4px;
+      .img {
+        width: 192px;
+        height: 144px;
+        border-radius: 4px 12px 0px 0px;
+      }
+      .text {
+        padding: 14px 10px;
+        height: 42px;
+        text-align: center;
+        border-radius: 0px 0px 4px 4px;
+        p {
+          -webkit-text-size-adjust: auto;
+          text-size-adjust: 100%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          @extend .font-set;
+          font-size: var(--fontSize);
+        }
+      }
+    }
+    &QuBtn {
+      display: inline-flex;
+      flex-wrap: wrap;
+      position: relative;
+      margin-top: 1px;
+      margin-bottom: 2px;
+      height: auto;
+      button {
+        display: flex;
+        justify-content: center;
+        margin-right: 2px;
+        margin-bottom: 2px;
+        padding: 8px 17px;
+        letter-spacing: 0px;
+        border: 1px solid var(--Gradient);
+        border-radius: 15px;
+        background-color: #fff;
+        opacity: 1;
+        @extend .font-set;
+        font-size: var(--fontSize);
+        line-height: 13px;
+        &:hover {
+          cursor: pointer;
+          font-weight: bolder;
+          background: transparent
+            linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+            no-repeat padding-box;
+          background: transparent
+            linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+            no-repeat padding-box;
+          color: white;
+        }
+      }
+    }
+    &BtnFirst {
+      -webkit-text-size-adjust: auto;
+      text-size-adjust: 100%;
+      position: relative;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      width: 192px;
+      height: auto;
+      border-radius: 4px;
+      background-color: #fff;
+      @extend .font-set;
+      color: #1087e9;
+      line-height: 30px;
+      button {
+        width: 100%;
+        border: none;
+        border-radius: 4px;
+        background-color: #fff;
+        @extend .font-set;
+        font-size: var(--fontSize);
+        color: var(--unnamed-color-666666);
+        &:hover {
+          cursor: pointer;
+          color: #fff;
+          background: transparent
+            linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+            no-repeat padding-box;
+          background: transparent
+            linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+            no-repeat padding-box;
+        }
+        &:hover .chatForBotTime {
+          display: block;
+        }
+      }
+    }
+    &BtnSecond {
+      -webkit-text-size-adjust: auto;
+      text-size-adjust: 100%;
+      position: relative;
+      margin-bottom: 2px;
+      background-color: #fff;
+      border-radius: 4px 4px 12px 12px;
+      width: 192px;
+      height: auto;
+      @extend .font-set;
+      color: #1087e9;
+      line-height: 30px;
+      button {
+        width: 100%;
+        border: none;
+        border-radius: 4px 4px 12px 12px;
+        background-color: #fff;
+        @extend .font-set;
+        font-size: var(--fontSize);
+        &:hover {
+          color: #fff;
+          cursor: pointer;
+          background: transparent
+            linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+            no-repeat padding-box;
+          background: transparent
+            linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+            no-repeat padding-box;
+        }
+        &:hover .chatForBotTime {
+          display: block;
+        }
+      }
+    }
+    .chatForBotTime {
+      display: none;
+      position: absolute;
+      right: -53px;
+      bottom: 0px;
+      @extend .font-set;
+      font-size: 11px;
+      color: #888888;
+    }
+  }
+  .chatForUser {
+    justify-content: flex-end;
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 42px;
+    &Bubble {
+      position: relative;
+      padding: 12px;
+      width: auto;
+      height: auto;
+      max-width: 241px;
+      background: transparent
+        linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+        no-repeat padding-box;
+      background: transparent
+        linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+        no-repeat padding-box;
+      border: none;
+      border-radius: 12px;
+      opacity: 1;
+      @extend .font-set;
+      color: #fff;
+      line-height: 18px;
+      font-size: var(--fontSize);
+      &:hover .chatForUserTime {
+        display: block;
+      }
+    }
+    &Time {
+      display: none;
+      position: absolute;
+      left: -53px;
+      bottom: 0px;
+      @extend .font-set;
+      font-size: 11px;
+      color: #888888;
+    }
+  }
+}
+
+.chatForBtn {
+  position: relative;
+  width: auto;
+  height: auto;
+  @extend .font-set;
+  font-size: var(--fontSize);
+  .chatForTime {
+    display: none;
+    position: absolute;
+    bottom: 0px;
+    left: 230px;
+    font-size: 9px;
+    color: #888888;
+  }
+  &:hover .chatForTime {
+    display: block;
+  }
+}
+.Customer {
+  position: relative;
+  top: -59px;
+  left: 70%;
+  padding: 0px 15px;
+  height: 18px;
+  z-index: 1999;
+  background-color: #fc9219;
+  border-radius: 15px 15px 0px 0px;
+  color: #fff;
+  font-size: 5px;
+  line-height: 18px;
+  &:hover {
+    cursor: pointer;
+    background-color: #e07c09;
+  }
+}
+.chatHistory {
+  margin-left: -10%;
+}
+/*---------------------------------------------------------------------------*/
+.chatSendFooter {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  // top: 94.5%;
+  bottom: 0px;
+  width: 100%;
+  height: 50px;
+  border-radius: 0px 0px 14px 14px;
+  background: transparent
+    linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0% no-repeat
+    padding-box;
+  padding: 0.5em 0.5em;
+  input {
+    width: 95%;
+    left: 2%;
+  }
+  .text {
+    font-size: 1rem;
+    border-radius: 1em;
+  }
+  .icon {
+    line-height: 1em;
+    text-align: center;
+  }
+  .send {
+    height: 32px;
+    width: auto;
+    padding: 0px;
+    line-height: 32px;
+    color: #888;
+    background: none;
+    border: none;
+  }
+  .cs {
+    height: 32px;
+    padding: 0px 4.6px;
+    border: none;
+  }
+  .waitNum {
+    height: 24px;
+    width: 24px;
+    line-height: 21px;
+    font-size: 9px;
+    margin:4px 0px 4px 4px;
+    border: none;
+    border-radius: 17px;
+    background: transparent
+    linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0% no-repeat
+    padding-box;
+    color: #fff;
+    &:hover{
+      cursor: pointer;
+      background-color:var(--Gradient);
+    }
+  }
+  .aligncenter {
+    align-self: center;
+  }
+}
+.ant-col-xs-offset-1 {
+  margin-left: 0px;
+}
+
+@media screen and (min-width: 1320px) {
+  nz-card {
+    i {
+      width: 2.4em;
+    }
+  }
+}
+@media screen and (max-width: 1320px) and (min-width: 700px) {
+  nz-card {
+    i {
+      width: 2.4em;
+    }
+  }
+}
+
+button > #click_2 {
+  background-color: cornflowerblue;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 5px;
+  &-track {
+    background: var(--background);
+  }
+  /* Track */
+  &-thumb {
+    background: var(--background);
+    cursor: pointer;
+    &:hover {
+      background: var(--Gradient);
+      cursor: pointer;
+    }
+  }
+}
+/* Handle on hover */
+
+/*擷取來源:https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp*/
+:host ::ng-deep .long-div {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+:host ::ng-deep .long-div-inner {
+  height: auto;
+}
+
+:host ::ng-deep .body .ant-back-top {
+  right: 3em;
+  bottom: 16em;
+}
+
+:host ::ng-deep .body .ant-back-top-rtl {
+  right: unset;
+  left: 150px;
+}
+:host ::ng-deep .ant-back-top-inner {
+  height: 30px;
+  width: 30px;
+  border-radius: 4px;
+  background-color: #1087e944;
+  text-align: center;
+  line-height: 30px;
+  font-size: 13px;
+  color: #fff;
+}
+:host ::ng-deep .ant-back-top-inner:hover {
+  background-color: #1087e979;
+}
+//---------------------------------------------------------
+.user2Loading {
+  // background-color: #fff;
+  position: absolute;
+  left: 2.8em;
+  bottom: -1px;
+  padding: 14px;
+  width: 70px;
+  height: 38px;
+  line-height: 12px;
+  border: none;
+  border-radius: 12px 12px 12px 4px;
+  word-wrap: break-word;
+  background-color: #fff;
+}
+.loading {
+  height: 5px;
+}
+.loading span {
+  display: inline-block;
+  margin-right: 5px;
+  width: 5px;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #888;
+  color: var(--unnamed-color-666666);
+  animation: load 1.04s ease infinite;
+}
+.loading span:last-child {
+  margin-right: 0px;
+}
+@keyframes load {
+  0% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.2);
+  }
+}
+.loading span:nth-child(1) {
+  animation-delay: 0.13s;
+}
+.loading span:nth-child(2) {
+  animation-delay: 0.26s;
+}
+.loading span:nth-child(3) {
+  animation-delay: 0.39s;
+}
+.loading span:nth-child(4) {
+  animation-delay: 0.52s;
+}
+.loading span:nth-child(5) {
+  animation-delay: 0.65s;
+}
+app-message-img {
+  z-index: -10;
+}
+.FaqBtn {
+  margin: 0.4em 2px 0.4em 0.4em;
+  padding: 0px 17px;
+  height: 29px;
+  width: auto;
+  max-width: 192px;
+  border-radius: 12px;
+  background-color: #fff;
+  border: 1px solid var(--Gradient);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: 1;
+  @extend .font-set;
+  letter-spacing: 0px;
+  font-size: var(--fontSize);
+  span {
+    line-height: 27px;
+  }
+  &:hover {
+    cursor: pointer;
+    background: transparent
+      linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+      no-repeat padding-box;
+    background: transparent
+      linear-gradient(0deg, var(--Gradient) 0%, var(--blue) 100%) 0% 0%
+      no-repeat padding-box;
+    font-weight: bolder;
+    color: white;
+  }
+}
+.SpinningStyle {
+  width: 100%;
+  height: 50px;
+  margin-top: 5px;
+}
+.faqsStyle {
+  width: 100%;
+  display: var(--isFAQBtn);
+  -webkit-transition-property: display;
+  transition-property: display;
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+.CustomerStyle {
+  flex-wrap: wrap;
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  .item {
+    flex: 0 0 30%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    //justify-content: space-between;
+    color: #666666;
+    button {
+      background: none;
+      border: none;
+    }
+  }
+  .flex-2 {
+    flex-grow: 2;
+    flex-shrink: 1;
+    flex-basis: 85%;
+    color: var(--blue);
+    &:hover {
+      cursor: pointer;
+    }
+    // 請修改這三個值試試看
+  }
+  .flex-1 {
+    flex-grow: 2;
+    flex-shrink: 1;
+    flex-basis: 5%;
+    // 請修改這三個值試試看
+  }
+}
+
+p {
+  font-family: Lato;
+}
+
+.sixpalaces {
+  position: absolute;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  bottom:50px;
+  // left: 2.5%;
+  z-index: 999;
+  width:100%;
+  height: var(--loginmenuH);
+  -webkit-transition-property: height;
+  transition-property: height;
+  -webkit-transition-duration:0.3s;
+  transition-duration:0.3s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+  box-shadow: 0px -5px 10px #66666623;
+}
+
+.loginMenu {
+  position: absolute;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  top:48px;
+  left: 0px;
+  z-index: 999;
+  width: 100%;
+  height: var(--itemH);
+  -webkit-transition-property: height;
+  transition-property: height;
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+  text-align: center;
+  box-shadow: 5px 0px 10px #66666634;
+  &Content {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 24px 72px 0px 72px;
+    background-color: #fff;
+  }
+
+  .flex1 {
+    overflow: hidden;
+    text-align: center;
+    height: 44.44px;
+    line-height: 44.44px;
+    i {
+      color: var(--blue);
+      font-size: 12px;
+      transform: translateX(-50%);
+    }
+    span {
+      color: var(--blue);
+      text-align: center;
+      font: normal normal normal 13px/23px Microsoft Sans Serif;
+      transform: translateX(-50%);
+      letter-spacing: 0px;
+      opacity: 1;
+      &:hover {
+        cursor: pointer;
+        color: var(--Gradient);
+      }
+    }
+  }
+  &Title {
+    overflow: hidden;
+    color: var(--unnamed-color-666666);
+    text-align: center;
+    font: normal normal normal 18px/23px Microsoft Sans Serif;
+    font-weight: 500;
+    letter-spacing: 0px;
+    color: #666666;
+    opacity: 1;
+  }
+  &Way {
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    flex-wrap: wrap;
+    width: 100%;
+    a {
+      margin: 0px 5px;
+      img {
+        width: 36px;
+        height: auto;
+      }
+    }
+  }
+}
+
+.lineHightSet {
+  line-height: 18px;
+  letter-spacing: -0.5px;
+  max-width: 240px;
+  font-size: var(--fontSize);
+}
+
+.iconSet {
+  color: #fff;
+  font-size: 23px;
+}
+.hrLine {
+  margin: .4em;
+  overflow: hidden;
+  text-align: center;
+  span {
+    font-size: 9px;
+    color: #bbbbbb;
+    text-align: center;
+    overflow: hidden;
+    font-family: "Noto Sans TC", sans-serif;
+    letter-spacing: 0px;
+    opacity: 1;
+    position: relative;
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+      width: 80px;
+      height: .02rem;
+      background: rgba(204, 204, 204, 0.562);
+      top: 50%;
+    }
+    &::before {
+      right: 100%;
+      margin-right: 10px;
+    }
+    &::after {
+      margin-left: 10px;
+    }
+  }
+}
+
+

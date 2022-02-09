@@ -1,0 +1,310 @@
+<!-- NG-ZORRO -->
+<button class="click-chat" (click)="showModal()">
+  <!-- {{data.colorUrl}} -->
+  <img width="80px" src="{{ this.imageUrl }}{{ data?.headerUrl }}" />
+</button>
+<!--彈跳視窗-->
+<nz-modal
+  nzWrapClassName="layout"
+  [nzStyle]="{ position: 'absolute', top: '0px', left: '0px' }"
+  class="chat-windows"
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="onCloseChatRoom()"
+  [nzKeyboard]="false"
+  [nzMaskClosable]="false"
+  [nzMask]="false"
+  [nzCloseOnNavigation]="false"
+  [nzCloseIcon]="modalCloseIcon"
+>
+  <!--title-->
+  <ng-template #modalTitle nzWrapClassName="layout">
+    <div nz-row nzJustify="start" class="modaltitle">
+      <div nz-col nzSpan="3" class="header-img">
+        <nz-avatar
+          nzSrc="{{ this.imageUrl }}{{ data?.headerUrl }}"
+          [nzIcon]="'user'"
+          [nzSize]="32"
+          class="animate__animated animate__rubberBand"
+        ></nz-avatar>
+      </div>
+      <div nz-col nzSpan="5" class="title">
+        <span class="myName">我是{{ data?.name }}</span>
+      </div>
+      <div nz-col nzSpan="16" class="title" class="loginimg">
+        <div class="svg">
+          <img
+            src="../../assets/images/email.svg"
+            style="fill: #fff"
+            class="svgimg"
+          />
+        </div>
+        <div *ngIf="!isAuth" class="chatroom-bar">
+          <span class="svg" *ngFor="let item of ThirdParty">
+            <a target="_blank" *ngIf="item.kind !== 'MB'" href="{{ item.url }}"
+              ><img src="{{ this.imageUrl }}{{ item.iconUrl }}"
+            /></a>
+            <img
+              *ngIf="item.kind === 'MB'"
+              (click)="showMenuLoginModal()"
+              src="{{ this.imageUrl }}{{ item.iconUrl }}"
+            />
+          </span>
+        </div>
+        <div class="svgScreen">
+          <img
+            src="../../assets/images/fullscreen.svg"
+            style="fill: #fff"
+            class="svgimg"
+            (click)="onFullscreen()"
+          />
+        </div>
+        <!-- <div class="svgScreen">
+            <img
+              src="../../assets/images/fullscreen.svg"
+              style="fill: #fff"
+              class="svgimg"
+            />
+          </div> -->
+      </div>
+      <!-- <div nz-col nzSpan="12" class="title" style="text-align: right;" (click)="handleClose()">
+      <i nz-icon nzType="close-square"  style="font-size: 28px;line-height: 48px;"></i>
+    </div> -->
+    </div>
+  </ng-template>
+  <ng-template #modalCloseIcon style="height: 48px">
+    <!-- <i nz-icon nzType="minus-circle" nzTheme="twotone"></i> -->
+    <div class="svg">
+      <img
+        src="../../assets/images/closed.svg"
+        style="fill: #fff"
+        class="svgimg"
+      />
+    </div>
+  </ng-template>
+  <ng-template #modalContent>
+    <app-login></app-login>
+    <div class="mask" id="mask"></div>
+    <!--真人客服詢問等待 *ngIf="isAskAwait"-->
+    <div class="isAskAwait" *ngIf="isAskAwait">
+      <nz-card style="margin: 0em; width: 100%" class="flex">
+        <div class="item">
+          <i nz-icon nzType="clock-circle" nzTheme="outline"style="font-size: 20px;"></i>
+          <!-- <h2><strong>需稍後，為您轉接中...</strong></h2> -->
+        </div>
+        <div class="item flex-2">
+          <span class="typeset">親愛的客人，非常抱歉。</span>
+        </div>
+        <div class="item flex-2">
+          <p>
+           {{isWindowsMain}}
+          </p>
+        </div>
+        <div class="item">
+          <button class="itemCancel" (click)="onLeaveWaitTeam()">取消排隊</button>
+          <button class="itemBtn" (click)="onContinueWaitTeam(isResType)"><strong>排隊等候</strong></button>
+        </div>
+        <div class="item">
+        </div>
+      </nz-card>
+    </div>
+    <!--結束提醒提示卡片-->
+    <div class="notify">
+      <nz-card style="margin: 0em; width: 100%" class="flex">
+        <div class="item">
+          <h2><strong>提示</strong></h2>
+        </div>
+        <div class="item flex-2">
+          <p class="typeset">
+            您好，由於您長時間未發言，頁面已經中斷此次訪問，若想繼續訪問可再點選重新連線，便會將您導向回對話。
+          </p>
+        </div>
+        <div class="item">
+          <button class="itemBtn" (click)="anewMessages()">重新連線</button>
+        </div>
+        <div class="item">
+          <button class="itemCancel" (click)="closeAll()">
+            <strong>取消</strong>
+          </button>
+        </div>
+      </nz-card>
+    </div>
+    <!--留言-->
+    <div class="csMessage" *ngIf="isMessage">
+      <form
+        nz-form
+        class="flex"
+        [formGroup]="sendMsgForm"
+        (ngSubmit)="onClickSendMessag()"
+        onkeydown="if(event.keyCode==13){return false;}"
+      >
+        <div class="title titlename">
+          <h2><strong>留言</strong></h2>
+        </div>
+        <div class="title">
+          <h4><strong>歡迎留下您的意見，客服人員將盡快回覆您。</strong></h4>
+        </div>
+        <div class="itemSelect">
+          <nz-select
+            type="select"
+            name="select-validate"
+            formControlName="select"
+            nzPlaceHolder="問題類別"
+            style="width: 50%"
+          >
+            <nz-option
+              *ngFor="let items of FaqCategoryOptions"
+              [nzValue]="items.id"
+              [nzLabel]="items.name"
+            ></nz-option>
+          </nz-select>
+          <span
+            *ngIf="select.invalid && (select.dirty || select.touched)"
+            class="login-errors"
+          >
+            分類必選
+          </span>
+        </div>
+        <div class="item flexTwo">
+          <textarea
+            [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            formControlName="comment"
+            nz-input
+            rows="2"
+            type="comment"
+            placeholder="問題內文..."
+          ></textarea>
+        </div>
+        <div
+          class="item"
+          *ngIf="comment.invalid && (comment.dirty || comment.touched)"
+        >
+          <span class="login-errors"> 留言必填 </span>
+        </div>
+        <div class="item">
+          <button class="itemBtn" type="submit">建立留言</button>
+        </div>
+        <div class="item">
+          <button class="itemCancel" (click)="onCloseMessage()">
+            <strong>取消</strong>
+          </button>
+        </div>
+      </form>
+    </div>
+    <!--登入-->
+    <div class="csMessage" *ngIf="showLogin">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onLoginSubmit()"
+        onkeydown="if(event.keyCode==13){return false;}"
+      >
+        <div class="flex login-form">
+          <div class="title titlename">
+            <h2><strong>登入</strong></h2>
+          </div>
+          <span *ngIf="loginFormError" class="login-errors">
+            {{ loginFormError }}
+          </span>
+          <div class="item flexTwo login-input">
+            <input
+              nz-input
+              formControlName="username"
+              name="username"
+              type="text"
+              placeholder="帳號"
+            />
+            <span
+              *ngIf="username.invalid && (username.dirty || username.touched)"
+              class="login-error"
+            >
+              帳號為必填
+            </span>
+          </div>
+          <div class="item flexTwo login-input">
+            <input
+              nz-input
+              formControlName="password"
+              name="password"
+              type="password"
+              placeholder="密碼"
+            />
+            <span
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="login-error"
+            >
+              密碼為必填
+            </span>
+          </div>
+          <div class="item">
+            <button class="itemBtn" [disabled]="!showLogin" type="submit">
+              登入
+            </button>
+          </div>
+          <div class="item">
+            <button class="itemCancel" (click)="onCloseLogin()">
+              <strong>取消</strong>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!--關閉提示 *ngIf="closeNotify"-->
+    <div class="closeNotify" *ngIf="closeNotify">
+      <nz-card style="margin: 0em; width: 100%" class="flex">
+        <div class="item">
+          <h2><strong>離開</strong></h2>
+        </div>
+        <div class="item flex-2">
+          <p class="typeset">你確定要離開，結束對話嗎?</p>
+        </div>
+        <div class="item">
+          <button class="itemBtn" (click)="handleCancelAll()">結束對話</button>
+        </div>
+        <div class="item">
+          <button class="itemCancel" (click)="onCancelCloseChatRoom()">
+            <strong>取消</strong>
+          </button>
+        </div>
+      </nz-card>
+    </div>
+  </ng-template>
+  <ng-template #modalFooter nzWrapClassName="layout"></ng-template>
+</nz-modal>
+
+<!--如果不用彈跳視窗-->
+<!-- <div class="chatBox animate__animated animate__slideInRight">
+    <div class="chatBoxTitle">
+      <div nz-row nzJustify="start" class="modaltitle">
+        <div nz-col nzSpan="3" class="header-img">
+          <nz-avatar
+            nzSrc="{{ this.imageUrl }}{{ data?.headerUrl }}"
+            [nzIcon]="'user'"
+            [nzSize]="32"
+            class="animate__animated animate__rubberBand"
+          ></nz-avatar>
+        </div>
+        <div nz-col nzSpan="5" class="title">
+          <span>我是{{ data?.name }}</span>
+        </div>
+        <div nz-col nzSpan="16" class="title flex">
+          <div class="item">
+            <img src="../../assets/images/email.svg" class="svgimg"/>
+          </div>
+          <div class="item" *ngFor="let item of ThirdParty">
+            <a target="_blank" href="{{ item.url }}"><img src="{{ this.imageUrl }}{{ item.iconUrl }}"/></a>
+          </div>
+          <div class="itemSvg">
+            <img src="../../assets/images/fullscreen.svg" class="svgimg"/>
+          </div>
+          <div class="itemSvg">
+            <img src="../../assets/images/closed.svg" class="svgimg"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatBoxContent">
+      <app-login></app-login>
+    </div>
+  </div> -->

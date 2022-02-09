@@ -1,0 +1,366 @@
+/*
+Theme Name: Polestar Child 
+Author: Puro
+Author URI: http://purothemes.com/
+Theme URI: https://wordpress.org/themes/polestar/
+Description: Polestar Child Theme
+Version: 1.0.0
+Template: polestar
+Text Domain: polestar
+Domain Path: /languages/
+*/
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+@import "~animate.css/animate.min.css";
+@import "~animate.css/animate.compat.css";
+@import "./css/animation.css";
+@import "./css/fontello-codes.css";
+@import "./css/fontello-embedded.css";
+@import "./css/fontello-ie7-codes.css";
+@import "./css/fontello-ie7.css";
+@import "./css/fontello.css";
+/*Layout.scss*/
+:root {
+  --blue: #00000000;
+  --Gradient: #00000000;
+  --background: #00000000;
+  --loginmenuH: 0px;
+  --itemH: 0px;
+  --icondisplay: none;
+  --closeNotify: none;
+  --isAskAwait:block;
+  --isMask: none;
+  --isFAQBtn: none;
+  --isTDitem: none;
+  --isOpenChat: visible;
+  --modalheight: 0px;
+  --isScreenOpenHeight: 580px;
+  --isScreenOpenWidth: 370px;
+  --fontSize: 16px;
+  --robotName: 14px;
+  --loadrecord:block;
+}
+.chatWebPage_History{
+  border: .75px solid rgb(216, 215, 215);
+  background: rgba(187, 187, 187, 0.301);
+  margin: 5px;
+  height: 20px;
+  line-height: 18px;
+}
+.hyperlink_History {
+  text-decoration:none;
+  color: var(--unnamed-color-666666);
+  &:hover {
+    cursor: auto;
+    color: var(--unnamed-color-666666);
+
+  }
+  &:active {
+    //設定正在點選的連結
+    cursor: auto;
+    }
+}
+.font-set {
+  font-weight: 400;
+  font-family: "Noto Sans TC", "Noto Sans SC", "Rubik", sans-serif;
+}
+
+* {
+  P {
+    margin-bottom: 0em;
+    font-weight: 400;
+    font: normal normal normal 14px/18px "Noto Sans TC", "Noto Sans SC", "Rubik", sans-serif;
+  }
+  span {
+    font-weight: 400;
+    font: normal normal normal 14px/18px "Noto Sans TC", "Noto Sans SC", "Rubik", sans-serif;
+  }
+}
+.layout {
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-radius: 14px;
+  }
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    color: #888;
+    font-weight: 400;
+  }
+  .ant-select {
+    color: #888;
+  }
+  body {
+    background: none;
+  }
+  .ant-modal {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    // transform: translateY(40%);
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 15px;
+  }
+  .ant-modal-body {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0px !important;
+  }
+  .ant-modal-content {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 380px;
+    max-height: 700px !important ;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    border-radius: 15px;
+    background-image: linear-gradient(var(--background), var(--background)), linear-gradient(#ffffff, #ffffff);
+    background-repeat: no-repeat, no-repeat;
+    background-position: bottom right, left, right;
+  }
+  .ant-modal-footer {
+    display: none;
+    border: none;
+    padding: 0px;
+    height: 0px;
+  }
+  /*------------------------------------------------------*/
+  .ant-modal-close-x {
+    height: 48px;
+    width: 43px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 18px;
+    padding-top: 15px;
+  }
+  .ant-modal-header {
+    // background-color: colorUrl;
+    padding: 0%;
+    border: none;
+    height: 48px;
+    border-radius: 15px 15px 0px 0px;
+  }
+}
+// @media screen and (min-width: 800px) {
+//   :root {
+//     --fontSize: 12px;
+//   }
+// }
+@media screen and (max-width: 800px) {
+  // :root {
+  //   --fontSize: 14px!important;
+  // }
+  .ant-modal {
+    top: 0px !important;
+    right: 0px !important;
+    left: 2.5% !important;
+    width: 80% !important;
+    height: 80% !important;
+  }
+  .ant-modal-body {
+    width: 80% !important;
+    height: 100% !important;
+  }
+  .ant-modal-content {
+    width: 80% !important;
+    height: 80% !important;
+    min-height: 400px !important;
+    max-height: 600px !important ;
+  }
+}
+@media screen and (max-width: 400px) {
+  // :root {
+  //   --fontSize: 18px!important;
+  // }
+  .ant-modal {
+    top: 0px !important;
+    right: 0px;
+    left: 2.5% !important;
+    width: 90% !important;
+    height: 100% !important;
+    min-width: 180px !important;
+    min-height: 500px !important;
+    border-radius: 15px;
+  }
+  .ant-modal-body {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 90% !important;
+    height: 100% !important;
+    max-height: 65vh !important;
+    padding: 0px !important;
+  }
+  .ant-modal-content {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 90% !important;
+    height: 100% !important;
+    min-height: 480px;
+    max-height: 100% !important;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    border-radius: 15px;
+    background-image: linear-gradient(var(--background), var(--background)), linear-gradient(#ffffff, #ffffff);
+    background-repeat: no-repeat, no-repeat;
+    background-position: bottom right, left, right;
+  }
+}
+
+.modulecard {
+  .ant-card-body {
+    border-radius: 10px;
+    padding: 0px;
+    border: none;
+  }
+  .ant-card-cover {
+    border-radius: 10px;
+    padding-bottom: 1em;
+    border: none;
+  }
+}
+
+.userModules::-webkit-scrollbar {
+  display: none;
+}
+.userModules {
+  float: left;
+  margin-top: 1em;
+  margin-bottom: 0.8em;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.commonBtnStyle {
+  float: left;
+  margin: 0.2em 0.2em 0.2em 0.2em;
+  padding: 0.2em 0.8em;
+  border: 0.25px solid #2d94b6;
+  font-weight: bolder;
+  color: #2d94b6;
+  background-color: #fff;
+}
+
+.kindBtn {
+  width: 100%;
+}
+.commonBtnStyle:hover {
+  cursor: pointer;
+  border: 0.25px solid #bbb;
+  background-color: rgba(231, 231, 231, 0.459);
+  color: #555;
+}
+.hyperlink {
+  color: rgb(11, 141, 228);
+  font-weight: bolder;
+}
+
+.chatWebPage {
+  border: 0.25px solid #2d94b6;
+  border-radius: 1em;
+  padding: 0.4em auto;
+  color: #2d94b6;
+  background-color: #fffff000;
+}
+.chatWebPage:hover {
+  cursor: pointer;
+  border: 0.25px solid #bbb;
+  background-color: rgba(231, 231, 231, 0.459);
+  color: #555;
+}
+.swiper {
+  margin-left: 0px !important;
+  &:hover {
+    cursor: grab;
+  }
+  &:active {
+    cursor: grabbing;
+  }
+}
+.swiper-slide {
+  width: auto !important; /*根据内容调整宽度*/
+}
+.swiper-button-next::after {
+  color: #fff;
+  font-size: 1rem !important;
+}
+
+.swiper-button-prev::after {
+  color: #fff;
+  font-size: 1rem !important;
+}
+
+.swiper-button-prev {
+  // background-image: url("./assets/images/arrow-left.svg") !important;
+  background-color: #839eb49f !important;
+  height: 2rem !important;
+  width: 2rem !important;
+  border-radius: 99em;
+}
+.swiper-button-next {
+  // background-image: url("./assets/images/arrow-right.svg") !important;
+  margin-right: 3rem;
+  background-color: #839eb49f !important;
+  height: 2rem !important;
+  width: 2rem !important;
+  border-radius: 99em;
+}
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {
+  font-family: fontello !important;
+  content: "\e808" !important;
+}
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  font-family: fontello !important;
+  content: "\e807" !important;
+}
+
+// .ant-modal-wrap{
+//   // position: absolute!important;
+//   // right: 0px;
+//   // width: 30vw !important;
+//   // height: 40vw !important;
+// }
+// .layout .ant-modal{
+//   // position: fixed !important;
+//   // right: 1vw !important;
+//   // width: 370px !important;
+//   // height: 510px !important;
+// }
+// .layout .ant-modal-content{
+//   // width:25vw !important;
+//   // height: 40vw !important;
+//   // margin-right: 1vw !important;
+//   // margin-top: 25vh !important;
+//   // position: absolute;
+//   // bottom: 0px;
+//   // transform: translateY(50%);
+
+// }
+// .layout .cdk-overlay-backdrop {
+//   // width: 30vw !important;
+//   // height: 40vw !important;
+
+// }
+// .layout .cdk-overlay-container{
+//   // width: 30vw !important;
+//   // height: 40vw !important;
+// }
+// .swiper-slide{
+//    width: 192px!important ;
+// }
+
+/*
+Copyright 2021 Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/

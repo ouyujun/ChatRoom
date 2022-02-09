@@ -1,0 +1,56 @@
+<app-message *ngIf="message"></app-message>
+<div class="logincontent"
+  *ngIf="visible">
+  <div nz-row
+    class="login-spacing">
+    <div class="login-spacingTitle flex1">請選擇登入方式</div>
+    <div class="login-spacingWay flex1">
+      <div class="login-spacingImgGroup"
+        *ngFor="let item of ThirdParty">
+        <img class="loginimg"
+          (click)="showLoginModal()"
+          *ngIf="item.kind === 'MB'"
+          nz-tooltip
+          [nzTooltipTitle]="item?.name"
+          src="{{ this.imageUrl }}{{ item.iconUrl }}" />
+
+        <a class="login-spacingHref"
+          target="_blank"
+          [href]="item?.url">
+
+          <img class="loginimg"
+            *ngIf="item.kind !== 'MB'"
+            nz-tooltip
+            [nzTooltipTitle]="item?.name"
+            src="{{ this.imageUrl }}{{ item.iconUrl }}" />
+        </a>
+      </div>
+    </div>
+    <div class="flex1"><span>或</span></div>
+    <div class="flex1">
+      <button class="login-spacingbtn"
+        nzWrapClassName="web"
+        label="login"
+        (click)="showhideutility()">
+        以訪客身分繼續
+      </button>
+      <!-- <button class="login-spacingbtn"
+        nzWrapClassName="web"
+        label="login"
+        (click)="showLoginModal()">
+        登入
+      </button> -->
+      <div>
+        <ul>
+          <img *ngIf="userInfoRes?.userInfo.pictureUrl"
+            src="{{ userInfoRes?.userInfo.pictureUrl}}"
+            style="width:100px;height:100px" />
+          <li *ngIf="userInfoRes?.userInfo.id">id:{{ userInfoRes?.userInfo.id}}</li>
+          <li *ngIf="userInfoRes?.userInfo.name">name:{{ userInfoRes?.userInfo.name }}</li>
+          <li *ngIf="userInfoRes?.userInfo.email">email: {{ userInfoRes?.userInfo.email}}</li>
+          <li *ngIf="userInfoRes?.userInfo.provider">provider: {{ userInfoRes?.userInfo.provider}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
